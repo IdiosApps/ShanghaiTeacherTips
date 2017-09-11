@@ -1,10 +1,15 @@
-## Welcome to GitHub Pages
+## The dangers of sliding whiteboards
+One of my schools has a smart TV (great!) with front-facing USB ports. I have my USB stick attached to my keys, and the extra little distance meant that caused a board to snag when I slide it towards the screen. 
+I'd either advise keeping USB sticks separate from keychains (though that makes them easy to lose), or removing them from the smart screen once your PPT has loaded. To make up for potentially having to reinsert your USB in a class, you can make shortcuts to your relevant lessons in the main directory of the USB - so you have fast access to your PPTs (whilst maintaining your file structure of choice).
 
-You can use the [editor on GitHub](https://github.com/IdiosApps/ShanghaiTeacherTips/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Todo: Essential Chinese for the classroom (for lower grades)
 
-### Markdown
+### Todo: Checking mobile data usage on China Unicom
+
+### Todo: WeChat location sharing to meet up with your friends
+
+
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
