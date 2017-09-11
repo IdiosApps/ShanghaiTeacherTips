@@ -8,10 +8,15 @@ https://www.gov.uk/register-to-vote
 "British citizens living abroad
 You can register as an overseas voter for up to 15 years after leaving the UK, as long as:
 
-*you’re a British citizen
-*you were registered to vote in the UK within the previous 15 years (or, in some cases, if you were too young to have registered when you left the UK)
+-you’re a British citizen
+-you were registered to vote in the UK within the previous 15 years (or, in some cases, if you were too young to have registered when you left the UK)
 Just register to vote in the normal way. You’ll need to renew your registration every year."
-- from https://www.gov.uk/voting-when-abroad
+ from https://www.gov.uk/voting-when-abroad
+
+### Todo: Student Finance England (SFE) - student loan repayments 
+http://www.studentloanrepayment.co.uk/portal/page?_pageid=93,6678653&_dad=portal&_schema=PORTAL
+n.b. if this link doesn't work, search for "student finance england abroad"
+
 
 ### Todo: Essential Chinese for the classroom (for lower grades)
 
