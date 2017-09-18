@@ -1,6 +1,27 @@
+## Automated backup of USB contents to cloud
+I work on a few different computers for my lesson plans, PPTs, handouts, etc. - and I want to be sure that I have a backup of this stuff (as you'll see in another tip, I almost lost several PPTs when my USB got bent).
+
+Need EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrobocopy-v1-0-14/; EasyRoboCopy provides an interface for RoboCopy (command line, built into Windows).
+
+<img src="img/Annotated.png" class="inline"/>
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
 ## The dangers of sliding whiteboards
-One of my schools has a smart TV (great!) with front-facing USB ports. I have my USB stick attached to my keys, and the extra little distance meant that caused a board to snag when I slide it towards the screen. 
-I'd either advise keeping USB sticks separate from keychains (though that makes them easy to lose), or removing them from the smart screen once your PPT has loaded. To make up for potentially having to reinsert your USB in a class, you can make shortcuts to your relevant lessons in the main directory of the USB - so you have fast access to your PPTs (whilst maintaining your file structure of choice).
+One of my schools has a smart TV (great!) with front-facing USB ports. I have my USB stick attached to my keys, and the extra little distance meant that caused a board to snag when I slide it towards the screen. My USB stick got bent and didn't work - so I hit it with a screwdriver base until it'd fit in a USB slot; fortunately, it still worked (despite every computer claiming there's an error when I plug it in!).
+
+Tips: 
+*keep USB sticks separate from keychains (though that makes them easy to lose), 
+*remove them from the smart screen once your PPT has loaded. To make up for potentially having to reinsert your USB in a class, you can make shortcuts to your relevant lessons in the main directory of the USB - so you have fast access to your PPTs (whilst maintaining your file structure of choice).
+*some smart TVs may have USB extension/adapter devices at the side/back. Use them if you can!
 
 ### Todo: Don't forget to register to vote 
 https://www.gov.uk/register-to-vote 
