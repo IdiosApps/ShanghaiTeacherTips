@@ -30,7 +30,7 @@ IMAGE^
 **NOTES** 
 - Change USB letter to U
 ^ IMAGE
-- Argument in Task Scheduler should be like `set-ExecutionPolicy Unrestricted start-process C:\Users\middo\OneDrive\ELA\USBsync.bat`
+- Argument in Task Scheduler should be like `start-process C:\Users\middo\OneDrive\ELA\USBsync.bat`
 
 - Stop the copying/monitoring when the USB is removed.
 
