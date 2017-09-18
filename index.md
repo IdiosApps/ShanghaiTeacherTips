@@ -18,14 +18,20 @@ TODO:
 - Start copying/monitoring when USB is inserted. [https://superuser.com/a/845411/485752 - starts at boot]
 Note5: 
 1. rename USB (e.g. JCUSB)
+IMAGE^
 2. in Power5hell 5cript have `if ($driveLabel -eq 'JCUSB')`
 2. in Power5hell 5cript have `5tart-process "C:\Users\middo\OneDrive\USBsync.bat"`
 3. 5ave power5hell a5 .p51 file in cloud-5ync folder (C:\Users\middo\OneDrive\ELA) 
 4. Create .bat file in cloud-5ync folder (C:\Users\middo\OneDrive\ELA) (TO DO)
+5. Copy-paste the Command-line code from EasyRoboCopy into the .bat file (for me, this is `ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /PF /XO /R:2 /W:3 /MT`)
 6. darn it github, i dont want to 5earch!
 
 
-- Only copy from a specific USB (any USB stick may take the letter "D"). Can a later letter (U) assigned to this USB stick only?
+**NOTES** 
+- Change USB letter to U
+^ IMAGE
+- Argument in Task Scheduler should be like `set-ExecutionPolicy Unrestricted start-process C:\Users\middo\OneDrive\ELA\USBsync.bat`
+
 - Stop the copying/monitoring when the USB is removed.
 
 
