@@ -29,12 +29,12 @@ IMAGE^
 - [Trigger] = Log on of user 
 - [Action] = Start a program, 
 - Program/script = `powershell`
-- Add arguments (optional) `start-process C:\Users\middo\OneDrive\ELA\USBSync.ps1`
+- Add arguments (optional) `C:\Users\middo\OneDrive\ELA\USBSync.ps1`
 
 **NOTES** 
 - Change USB letter to U
 ^ IMAGE
-- Argument in Task Scheduler should be like `start-process C:\Users\middo\OneDrive\ELA\USBsync.bat`
+
 
 - Stop the copying/monitoring when the USB is removed.
 
