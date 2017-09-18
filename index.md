@@ -15,9 +15,11 @@ Need EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyro
 9. Start copying.
 
 TODO: 
-- Start copying/monitoring when USB is inserted.
+- Start copying/monitoring when USB is inserted. [https://superuser.com/a/845411/485752 - starts at boot]
 - Only copy from a specific USB (any USB stick may take the letter "D"). Can a later letter (U) assigned to this USB stick only?
 - Stop the copying/monitoring when the USB is removed.
+
+
 
 
 ## The dangers of sliding whiteboards
