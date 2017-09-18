@@ -4,15 +4,20 @@ I work on a few different computers for my lesson plans, PPTs, handouts, etc. - 
 Need EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrobocopy-v1-0-14/; EasyRoboCopy provides an interface for RoboCopy (command line, built into Windows).
 
 <img src="img/Annotated.png" class="inline"/>
-1
-2
-3
-4
-5
-6
-7
-8
-9
+1. Your USB source
+2. Your destination source (make sure your cloud sync program knows to upload this folder).
+3. Copy all subdirectories (not just everything in the "home" folder of the USB), even if they're empty.
+4. Try again if there's a problem.
+5. If a file on the USB is older than the "same" file in the cloud-sync folder, don't replace the cloud-sync version.
+6. Make things run a bit faster.
+7. You could set the maximum bytes to 10000000 (10,000,000 = 10MB) - but you'll big videos, some songs, some PPPTs etc. this way.
+8. Make the program check for updates every (1) minute, and copy if there's an update.
+9. Start copying.
+
+TODO: 
+- Start copying/monitoring when USB is inserted.
+- Only copy from a specific USB (any USB stick may take the letter "D"). Can a later letter (U) assigned to this USB stick only?
+- Stop the copying/monitoring when the USB is removed.
 
 
 ## The dangers of sliding whiteboards
