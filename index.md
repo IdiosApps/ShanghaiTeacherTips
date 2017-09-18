@@ -19,13 +19,17 @@ TODO:
 Note5: 
 1. rename USB (e.g. JCUSB)
 IMAGE^
-2. in Power5hell 5cript have `if ($driveLabel -eq 'JCUSB')`
-2. in Power5hell 5cript have `5tart-process "C:\Users\middo\OneDrive\USBsync.bat"`
-3. 5ave power5hell a5 .p51 file in cloud-5ync folder (C:\Users\middo\OneDrive\ELA) 
-4. Create .bat file in cloud-5ync folder (C:\Users\middo\OneDrive\ELA) (TO DO)
+2. in Powershell script have `if ($driveLabel -eq 'JCUSB')`
+2. in Powershell script have `start-process "C:\Users\middo\OneDrive\USBsync.bat"`
+3. Save powershell as .ps1 file in cloud-sync folder (C:\Users\middo\OneDrive\ELA) 
+4. Create .bat file in cloud-sync folder (C:\Users\middo\OneDrive\ELA) (TO DO)
 5. Copy-paste the Command-line code from EasyRoboCopy into the .bat file (for me, this is `ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /PF /XO /R:2 /W:3 /MT`)
-6. darn it github, i dont want to 5earch!
-
+- Note: `start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /PF /XO /R:2 /W:3 /MT` will minimise the RoboCopy window - very nice!
+6. In Task Scheduler, create a task:
+- [Trigger] = Log on of user 
+- [Action] = Start a program, 
+- Program/script = `powershell`
+- Add arguments (optional) `start-process C:\Users\middo\OneDrive\ELA\USBSync.ps1`
 
 **NOTES** 
 - Change USB letter to U
