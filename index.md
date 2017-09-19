@@ -49,7 +49,6 @@ $driveLetter = $newEvent.SourceEventArgs.NewEvent.DriveName
 $driveLabel = ([wmi]"Win32_LogicalDisk='$driveLetter'").VolumeName
 write-host (get-date -format s) " Drive name = " $driveLetter
 write-host (get-date -format s) " Drive label = " $driveLabel
-   #Execute process if drive matches specified condition(s)
 if ($driveLetter -eq 'Z:' -and $driveLabel -eq 'Mirror')       #1
 {
 write-host (get-date -format s) " Starting task in 3 seconds..."
@@ -80,17 +79,12 @@ Note: you can change _/MOT:1_ to /MOT:M, where M is the update interval in minut
 ```aaa```
 - **Please make sure that (your version of) `"U:\ELA Lessons"` is the USB folder you would like to copy from. Likewise, make sure that `"C:\Users\middo\OneDrive\ELA\ELA Lessons"` is the cloud-sync folder you'd like to paste USB contents to.**
 
-TODO 
-shell:startup
-.bat file
-code
-
-6. In Task Scheduler, create a task:
-- [Trigger] = Log on of user 
-- [Action] = Start a program, 
-- Program/script = `powershell`
-- Add arguments (optional) `C:\Users\middo\OneDrive\ELA\USBSync.ps1`
-
+- Now we need to create the .bat which runs on log-in. Go to your startup folder:
+<img src="img/run+startup.png" class="inline"/>
+- Create a .bat file (same way as before), and have a line of code like:
+```start powershell -noexit -file "C:\Users\middo\OneDrive\ELA\USBSync.ps1"```
+- but change the directory ("C:\....") and filename to suit what you have. _Note that this is to open the Powershell .ps1 file_
+<img src="img/USBPSStarterBat.png" class="inline"/>
 
 
 If you want to customise some settings/rules for USB copying:
