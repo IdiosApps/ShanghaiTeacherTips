@@ -40,11 +40,11 @@ $driveLabel = ([wmi]"Win32_LogicalDisk='$driveLetter'").VolumeName
 write-host (get-date -format s) " Drive name = " $driveLetter
 write-host (get-date -format s) " Drive label = " $driveLabel
 # Execute process if drive matches specified condition(s)
-**if ($driveLetter -eq 'Z:' -and $driveLabel -eq 'Mirror') #1**
+if ($driveLetter -eq 'Z:' -and $driveLabel -eq 'Mirror')       #1
 {
 write-host (get-date -format s) " Starting task in 3 seconds..."
 start-sleep -seconds 3
-**start-process "Z:\sync.bat" #2**
+start-process "Z:\sync.bat"    #2
 }
 }
 Remove-Event -SourceIdentifier volumeChange
@@ -52,8 +52,11 @@ Remove-Event -SourceIdentifier volumeChange
 Unregister-Event -SourceIdentifier volumeChange
 ```
 
-- Note at **#1** You can have simply `**if ($driveLabel -eq 'YOUR_USB_NAME') #1**`, where you replace **YOUR_USB_NAME** with ... you guessed it, your USB's name.
-- Note at **#2** You should give the location and name of a _.bat_ file - we will create this later. I'd recommend having this be synched to the cloud, just so you have a backup. For me, I have: `start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"`
+- Note at **#1** You can have simply 
+```**if ($driveLabel -eq 'YOUR_USB_NAME') #1**```,
+where you replace **YOUR_USB_NAME** with ... you guessed it, your USB's name.
+- Note at **#2** You should give the location and name of a _.bat_ file - we will create this later. I'd recommend having this be synched to the cloud, just so you have a backup. For me, I have: 
+```start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"```
 
 - Save this as a .ps1 file in your cloud-sync folder (C:\Users\middo\OneDrive\ELA). I went for the name _USBsync.ps1_.
 
