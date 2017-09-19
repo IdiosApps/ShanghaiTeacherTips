@@ -29,8 +29,7 @@ Now, you will need to customise this code for your 1) your USB drive, and 2) you
 <img src="img/WPSISE-search.png" class="inline"/>
 <img src="img/WPSISE.png" class="inline"/>
 
-```
-#Requires -version 2.0
+```#Requires -version 2.0
 Register-WmiEvent -Class win32_VolumeChangeEvent -SourceIdentifier volumeChange
 write-host (get-date -format s) " Beginning script..."
 do{
@@ -59,18 +58,13 @@ start-process "Z:\sync.bat"    #2
 }
 Remove-Event -SourceIdentifier volumeChange
 } while (1-eq1) #Loop until next event
-Unregister-Event -SourceIdentifier volumeChange
-```
+Unregister-Event -SourceIdentifier volumeChange```
 
 - Note at _#1_ You can have simply 
-```
-if ($driveLabel -eq 'YOUR_USB_NAME') #1
-```,
+```if ($driveLabel -eq 'YOUR_USB_NAME') #1```,
 where you replace _YOUR_USB_NAME_ with ... you guessed it, your USB's name.
 - Note at _#2_ You should give the location and name of a _.bat_ file - we will create this later. I'd recommend having this be synched to the cloud, just so you have a backup. For me, I have: 
-```
-start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"
-```
+```start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"```
 
 - Save this as a .ps1 file in your cloud-sync folder (C:\Users\middo\OneDrive\ELA). I went for the name _USBsync.ps1_.
 - Create a .bat file in the same cloud-sync folder (C:\Users\middo\OneDrive\ELA):
@@ -78,7 +72,10 @@ start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"
 <img src="img/batCreate.png" class="inline"/>
 - Open the .bat file for editing:
 <img src="img/editBat.png" class="inline"/>
-- Copy-paste the code from EasyRoboCopy into the .bat file. If you want to check (and copy) any updates every 1 minute(s), you can use: ```start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /MOT:1 /PF /XO /R:2 /W:3 /MT```
+- Copy-paste the code from EasyRoboCopy into the .bat file. If you want to check (and copy) any updates every 1 minute(s), you can use:
+
+```start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /MOT:1 /PF /XO /R:2 /W:3 /MT```
+
 Note: you can change _/MOT:1_ to /MOT:M, where M is the update interval in minutes.
 - If you only want to copy updated USB contents on USB insertion, use this code:
 ```
@@ -89,9 +86,9 @@ start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lesson
 - Now we need to create the .bat which runs on log-in. Go to your startup folder:
 <img src="img/run+startup.png" class="inline"/>
 - Create a .bat file (same way as before), and have a line of code like:
-```
-start powershell -noexit -file "C:\Users\middo\OneDrive\ELA\USBSync.ps1"
-```
+
+```start powershell -noexit -file "C:\Users\middo\OneDrive\ELA\USBSync.ps1"```
+
 - but change the directory ("C:\....") and filename to suit what you have. _Note that this is to open the Powershell .ps1 file_
 <img src="img/USBPSStarterBat.png" class="inline"/>
 
