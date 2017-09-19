@@ -1,6 +1,6 @@
 _Friendly reminder: Whilst I may try to help you / improve these tips, I'm not responsible for anything breaking ;)_
 
-## Automated backup of USB contents to PC folder (then cloud, if you like) - Windows PCs, free
+### Automated backup of USB contents to PC folder (then cloud, if you like) - Windows PCs, free
 I work on a few different computers for my lesson plans, PPTs, handouts, etc. - and I want to be sure that I have a backup of this stuff (as you'll see in another tip, I almost lost several PPTs when my USB got bent).
 
 **Summary:**
@@ -62,11 +62,15 @@ Remove-Event -SourceIdentifier volumeChange
 Unregister-Event -SourceIdentifier volumeChange
 ```
 
-- Note at **#1** You can have simply 
-`**if ($driveLabel -eq 'YOUR_USB_NAME') #1**`,
-where you replace **YOUR_USB_NAME** with ... you guessed it, your USB's name.
-- Note at **#2** You should give the location and name of a _.bat_ file - we will create this later. I'd recommend having this be synched to the cloud, just so you have a backup. For me, I have: 
-`start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"`
+- Note at _#1_ You can have simply 
+```
+if ($driveLabel -eq 'YOUR_USB_NAME') #1
+```,
+where you replace _YOUR_USB_NAME_ with ... you guessed it, your USB's name.
+- Note at _#2_ You should give the location and name of a _.bat_ file - we will create this later. I'd recommend having this be synched to the cloud, just so you have a backup. For me, I have: 
+```
+start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"
+```
 
 - Save this as a .ps1 file in your cloud-sync folder (C:\Users\middo\OneDrive\ELA). I went for the name _USBsync.ps1_.
 - Create a .bat file in the same cloud-sync folder (C:\Users\middo\OneDrive\ELA):
@@ -77,13 +81,17 @@ where you replace **YOUR_USB_NAME** with ... you guessed it, your USB's name.
 - Copy-paste the code from EasyRoboCopy into the .bat file. If you want to check (and copy) any updates every 1 minute(s), you can use: ```start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /MOT:1 /PF /XO /R:2 /W:3 /MT```
 Note: you can change _/MOT:1_ to /MOT:M, where M is the update interval in minutes.
 - If you only want to copy updated USB contents on USB insertion, use this code:
-```aaa```
+```
+start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /XO /R:2 /W:3 /MT
+```
 - **Please make sure that (your version of) `"U:\ELA Lessons"` is the USB folder you would like to copy from. Likewise, make sure that `"C:\Users\middo\OneDrive\ELA\ELA Lessons"` is the cloud-sync folder you'd like to paste USB contents to.**
 
 - Now we need to create the .bat which runs on log-in. Go to your startup folder:
 <img src="img/run+startup.png" class="inline"/>
 - Create a .bat file (same way as before), and have a line of code like:
-```start powershell -noexit -file "C:\Users\middo\OneDrive\ELA\USBSync.ps1"```
+```
+start powershell -noexit -file "C:\Users\middo\OneDrive\ELA\USBSync.ps1"
+```
 - but change the directory ("C:\....") and filename to suit what you have. _Note that this is to open the Powershell .ps1 file_
 <img src="img/USBPSStarterBat.png" class="inline"/>
 
@@ -104,8 +112,10 @@ Get EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrob
 
 Credit:
 https://superuser.com/a/845411/485752 - (USB detection powershell script)
+Lots of posts all over the webs - I visited too many sites and lost track of who to credit, but left StackOverflow thanks where it was due.
 
-## The dangers of sliding whiteboards
+
+### The dangers of sliding whiteboards
 One of my schools has a smart TV (great!) with front-facing USB ports. I have my USB stick attached to my keys, and the extra little distance meant that caused a board to snag when I slide it towards the screen. My USB stick got bent and didn't work - so I hit it with a screwdriver base until it'd fit in a USB slot; fortunately, it still worked (despite every computer claiming there's an error when I plug it in!).
 
 Tips: 
