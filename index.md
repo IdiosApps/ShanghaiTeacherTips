@@ -49,7 +49,7 @@ $driveLetter = $newEvent.SourceEventArgs.NewEvent.DriveName
 $driveLabel = ([wmi]"Win32_LogicalDisk='$driveLetter'").VolumeName
 write-host (get-date -format s) " Drive name = " $driveLetter
 write-host (get-date -format s) " Drive label = " $driveLabel
-# Execute process if drive matches specified condition(s)
+`#Execute process if drive matches specified condition(s)`
 if ($driveLetter -eq 'Z:' -and $driveLabel -eq 'Mirror')       #1
 {
 write-host (get-date -format s) " Starting task in 3 seconds..."
