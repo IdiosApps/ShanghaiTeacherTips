@@ -1,5 +1,15 @@
-## Automated backup of USB contents to cloud
+_Friendly reminder: Whilst I may try to help you / improve these tips, I'm not responsible for anything breaking ;)_
+
+## Automated backup of USB contents to PC folder (then cloud, if you like) - Windows PCs, free
 I work on a few different computers for my lesson plans, PPTs, handouts, etc. - and I want to be sure that I have a backup of this stuff (as you'll see in another tip, I almost lost several PPTs when my USB got bent).
+
+**Summary:**
+At logon, a batch (.bat) script will run which makes a Windows Powershell script run. This Powershell script detects USB insertion and removal, and makes a .bat script run on USB insertion. This second .bat script uses Robocopy (built into Windows) to copy files which are newer on the USB stick than in the PC's folder.
+Note: USB detection can be specific to USB-drive letter, and/or name (so, if you name your USB drive you want to backup, only this USB will be backed up!).
+Note: You can customise the RoboCopy rules with EasyRoboCopy. E.g.
+1. Mirror USB contents (if you work on the PC folder's files, they'll be overwritten by the older USB files). _I haven't gone for this default in this guide!_
+2. Ignore files above a certain size
+3. _aaaaand much much more_
 
 **Prerequisites:**
 1. Rename USB (e.g. JCUSB)
@@ -7,7 +17,7 @@ I work on a few different computers for my lesson plans, PPTs, handouts, etc. - 
 - Go to My Computer/This PC
 - Right click the USB drive, and hit "Properties"
 - Type whatever you like into the bar at the top, then hit Apply. _Using your name/initials may help people send a USB stick your way, in case you lose it!_
-2. Change USB's letter
+2. _Optional:_ Change USB's letter (really not neccesary, but maybe you like to customise things for the fun of it;))
 <img src="img/DiskManagement-search.png" class="inline"/>
 - Search Windows for "Disk Management", and click "Create and format hard **disk** partitons."
 <img src="img/ChangeDiskLetterSmall.png" class="inline"/>
@@ -15,9 +25,9 @@ I work on a few different computers for my lesson plans, PPTs, handouts, etc. - 
 - Select the USB drive, hit "change", and assign the letter U.
 
 **Main process:**
-Now, you will need to customise this code for your 1) your USB drive, and 2) your PC's cloud-sync folder. Bits that need changing are emboldened - more info below! Do this inside _Windows Powershell ISE_
-^Image of search for WPSH ISE
-^Image of WPSHISE
+Now, you will need to customise this code for your 1) your USB drive, and 2) your PC's cloud-sync folder. Bits that need changing are highlighted (in red boxes in the image, with #1 and #2 in the code) - more info below! Do this inside _Windows Powershell ISE_.
+<img src="img/WPSISE-search.png" class="inline"/>
+<img src="img/WPSISE.png" class="inline"/>
 
 ```#Requires -version 2.0
 Register-WmiEvent -Class win32_VolumeChangeEvent -SourceIdentifier volumeChange
@@ -59,27 +69,32 @@ where you replace **YOUR_USB_NAME** with ... you guessed it, your USB's name.
 ```start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"```
 
 - Save this as a .ps1 file in your cloud-sync folder (C:\Users\middo\OneDrive\ELA). I went for the name _USBsync.ps1_.
+- Create a .bat file in the same cloud-sync folder (C:\Users\middo\OneDrive\ELA):
+<img src="img/CreateTXT.png" class="inline"/>
+<img src="img/batCreate.png" class="inline"/>
+- Open the .bat file for editing:
+<img src="img/editBat.png" class="inline"/>
+- Copy-paste the code from EasyRoboCopy into the .bat file. If you want to check (and copy) any updates every 1 minute(s), you can use: ```start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /MOT:1 /PF /XO /R:2 /W:3 /MT```
+Note: you can change _/MOT:1_ to /MOT:M, where M is the update interval in minutes.
+- If you only want to copy updated USB contents on USB insertion, use this code:
+```aaa```
+- **Please make sure that (your version of) `"U:\ELA Lessons"` is the USB folder you would like to copy from. Likewise, make sure that `"C:\Users\middo\OneDrive\ELA\ELA Lessons"` is the cloud-sync folder you'd like to paste USB contents to.**
 
+TODO 
+shell:startup
+.bat file
+code
 
-
-4. Create .bat file in cloud-sync folder (C:\Users\middo\OneDrive\ELA) (TO DO)
-5. Copy-paste the Command-line code from EasyRoboCopy into the .bat file (for me, this is `ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /PF /XO /R:2 /W:3 /MT`)
-- Note: `start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /PF /XO /R:2 /W:3 /MT` will minimise the RoboCopy window - very nice!
 6. In Task Scheduler, create a task:
 - [Trigger] = Log on of user 
 - [Action] = Start a program, 
 - Program/script = `powershell`
 - Add arguments (optional) `C:\Users\middo\OneDrive\ELA\USBSync.ps1`
 
-**NOTES** 
-- Change USB letter to U
-^ IMAGE
 
 
-- Stop the copying/monitoring when the USB is removed.
-
-#If you want to customise some settings:#
-Get EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrobocopy-v1-0-14/; EasyRoboCopy provides an interface for RoboCopy (command line, built into Windows).
+If you want to customise some settings/rules for USB copying:
+Get EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrobocopy-v1-0-14/; EasyRoboCopy provides an interface for RoboCopy (command line, built into Windows). Here's an annotated image to help you navigate some interesting areas:
 
 <img src="img/Annotated.png" class="inline"/>
 1. Your USB source
@@ -92,9 +107,8 @@ Get EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrob
 8. Make the program check for updates every (1) minute, and copy if there's an update.
 9. Start copying.
 
-
 Credit:
-https://superuser.com/a/845411/485752
+https://superuser.com/a/845411/485752 - (USB detection powershell script)
 
 ## The dangers of sliding whiteboards
 One of my schools has a smart TV (great!) with front-facing USB ports. I have my USB stick attached to my keys, and the extra little distance meant that caused a board to snag when I slide it towards the screen. My USB stick got bent and didn't work - so I hit it with a screwdriver base until it'd fit in a USB slot; fortunately, it still worked (despite every computer claiming there's an error when I plug it in!).
