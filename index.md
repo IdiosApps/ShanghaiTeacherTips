@@ -1,27 +1,63 @@
 ## Automated backup of USB contents to cloud
 I work on a few different computers for my lesson plans, PPTs, handouts, etc. - and I want to be sure that I have a backup of this stuff (as you'll see in another tip, I almost lost several PPTs when my USB got bent).
 
-Need EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrobocopy-v1-0-14/; EasyRoboCopy provides an interface for RoboCopy (command line, built into Windows).
+**Prerequisites:**
+1. Rename USB (e.g. JCUSB)
+<img src="img/ChangeDiskName.png" class="inline"/>
+- Go to My Computer/This PC
+- Right click the USB drive, and hit "Properties"
+- Type whatever you like into the bar at the top, then hit Apply. _Using your name/initials may help people send a USB stick your way, in case you lose it!_
+2. Change USB's letter
+<img src="img/DiskManagement-search.png" class="inline"/>
+- Search Windows for "Disk Management", and click "Create and format hard **disk** partitons."
+<img src="img/ChangeDiskLetterSmall.png" class="inline"/>
+- Right click your USB drive, and press "Change drive letter and paths".
+- Select the USB drive, hit "change", and assign the letter U.
 
-<img src="img/Annotated.png" class="inline"/>
-1. Your USB source
-2. Your destination source (make sure your cloud sync program knows to upload this folder).
-3. Copy all subdirectories (not just everything in the "home" folder of the USB), even if they're empty.
-4. Try again if there's a problem.
-5. If a file on the USB is older than the "same" file in the cloud-sync folder, don't replace the cloud-sync version.
-6. Make things run a bit faster.
-7. You could set the maximum bytes to 10000000 (10,000,000 = 10MB) - but you'll big videos, some songs, some PPPTs etc. this way.
-8. Make the program check for updates every (1) minute, and copy if there's an update.
-9. Start copying.
+**Main process:**
+Now, you will need to customise this code for your 1) your USB drive, and 2) your PC's cloud-sync folder. Bits that need changing are emboldened - more info below! Do this inside _Windows Powershell ISE_
+^Image of search for WPSH ISE
+^Image of WPSHISE
 
-TODO: 
-- Start copying/monitoring when USB is inserted. [https://superuser.com/a/845411/485752 - starts at boot]
-Note5: 
-1. rename USB (e.g. JCUSB)
-IMAGE^
-2. in Powershell script have `if ($driveLabel -eq 'JCUSB')`
-2. in Powershell script have `start-process "C:\Users\middo\OneDrive\USBsync.bat"`
-3. Save powershell as .ps1 file in cloud-sync folder (C:\Users\middo\OneDrive\ELA) 
+`#Requires -version 2.0
+Register-WmiEvent -Class win32_VolumeChangeEvent -SourceIdentifier volumeChange
+write-host (get-date -format s) " Beginning script..."
+do{
+$newEvent = Wait-Event -SourceIdentifier volumeChange
+$eventType = $newEvent.SourceEventArgs.NewEvent.EventType
+$eventTypeName = switch($eventType)
+{
+1 {"Configuration changed"}
+2 {"Device arrival"}
+3 {"Device removal"}
+4 {"docking"}
+}
+write-host (get-date -format s) " Event detected = " $eventTypeName
+if ($eventType -eq 2)
+{
+$driveLetter = $newEvent.SourceEventArgs.NewEvent.DriveName
+$driveLabel = ([wmi]"Win32_LogicalDisk='$driveLetter'").VolumeName
+write-host (get-date -format s) " Drive name = " $driveLetter
+write-host (get-date -format s) " Drive label = " $driveLabel
+# Execute process if drive matches specified condition(s)
+**if ($driveLetter -eq 'Z:' -and $driveLabel -eq 'Mirror') #1**
+{
+write-host (get-date -format s) " Starting task in 3 seconds..."
+start-sleep -seconds 3
+**start-process "Z:\sync.bat" #2**
+}
+}
+Remove-Event -SourceIdentifier volumeChange
+} while (1-eq1) #Loop until next event
+Unregister-Event -SourceIdentifier volumeChange`
+
+- Note at **#1** You can have simply `**if ($driveLabel -eq 'YOUR_USB_NAME') #1**`, where you replace **YOUR_USB_NAME** with ... you guessed it, your USB's name.
+- Note at **#2** You should give the location and name of a _.bat_ file - we will create this later. I'd recommend having this be synched to the cloud, just so you have a backup. For me, I have: `start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"`
+
+- Save this as a .ps1 file in your cloud-sync folder (C:\Users\middo\OneDrive\ELA). I went for the name _USBsync.ps1_.
+
+
+
 4. Create .bat file in cloud-sync folder (C:\Users\middo\OneDrive\ELA) (TO DO)
 5. Copy-paste the Command-line code from EasyRoboCopy into the .bat file (for me, this is `ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /PF /XO /R:2 /W:3 /MT`)
 - Note: `start /min ROBOCOPY.EXE "U:\ELA Lessons" "C:\Users\middo\OneDrive\ELA\ELA Lessons" /E /DCOPY:DAT /PF /XO /R:2 /W:3 /MT` will minimise the RoboCopy window - very nice!
@@ -38,8 +74,23 @@ IMAGE^
 
 - Stop the copying/monitoring when the USB is removed.
 
+#If you want to customise some settings:#
+Get EasyRoboCopy from http://www.tribblesoft.com/home-page/easy-robocopy/easyrobocopy-v1-0-14/; EasyRoboCopy provides an interface for RoboCopy (command line, built into Windows).
+
+<img src="img/Annotated.png" class="inline"/>
+1. Your USB source
+2. Your destination source (make sure your cloud sync program knows to upload this folder).
+3. Copy all subdirectories (not just everything in the "home" folder of the USB), even if they're empty.
+4. Try again if there's a problem.
+5. If a file on the USB is older than the "same" file in the cloud-sync folder, don't replace the cloud-sync version.
+6. Make things run a bit faster.
+7. You could set the maximum bytes to 10000000 (10,000,000 = 10MB) - but you'll big videos, some songs, some PPPTs etc. this way.
+8. Make the program check for updates every (1) minute, and copy if there's an update.
+9. Start copying.
 
 
+Credit:
+https://superuser.com/a/845411/485752
 
 ## The dangers of sliding whiteboards
 One of my schools has a smart TV (great!) with front-facing USB ports. I have my USB stick attached to my keys, and the extra little distance meant that caused a board to snag when I slide it towards the screen. My USB stick got bent and didn't work - so I hit it with a screwdriver base until it'd fit in a USB slot; fortunately, it still worked (despite every computer claiming there's an error when I plug it in!).
