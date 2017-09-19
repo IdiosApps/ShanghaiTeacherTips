@@ -58,14 +58,13 @@ start-process "Z:\sync.bat"    #2
 }
 Remove-Event -SourceIdentifier volumeChange
 } while (1-eq1) #Loop until next event
-Unregister-Event -SourceIdentifier volumeChange
-```
+Unregister-Event -SourceIdentifier volumeChange```
 
 - Note at **#1** You can have simply 
-```**if ($driveLabel -eq 'YOUR_USB_NAME') #1**```,
+`**if ($driveLabel -eq 'YOUR_USB_NAME') #1**`,
 where you replace **YOUR_USB_NAME** with ... you guessed it, your USB's name.
 - Note at **#2** You should give the location and name of a _.bat_ file - we will create this later. I'd recommend having this be synched to the cloud, just so you have a backup. For me, I have: 
-```start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"```
+`start-process "C:\Users\middo\OneDrive\ELA\USBsync.bat"`
 
 - Save this as a .ps1 file in your cloud-sync folder (C:\Users\middo\OneDrive\ELA). I went for the name _USBsync.ps1_.
 - Create a .bat file in the same cloud-sync folder (C:\Users\middo\OneDrive\ELA):
