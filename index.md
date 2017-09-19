@@ -29,7 +29,8 @@ Now, you will need to customise this code for your 1) your USB drive, and 2) you
 <img src="img/WPSISE-search.png" class="inline"/>
 <img src="img/WPSISE.png" class="inline"/>
 
-```#Requires -version 2.0
+```
+#Requires -version 2.0
 Register-WmiEvent -Class win32_VolumeChangeEvent -SourceIdentifier volumeChange
 write-host (get-date -format s) " Beginning script..."
 do{
@@ -58,7 +59,8 @@ start-process "Z:\sync.bat"    #2
 }
 Remove-Event -SourceIdentifier volumeChange
 } while (1-eq1) #Loop until next event
-Unregister-Event -SourceIdentifier volumeChange```
+Unregister-Event -SourceIdentifier volumeChange
+```
 
 - Note at **#1** You can have simply 
 `**if ($driveLabel -eq 'YOUR_USB_NAME') #1**`,
