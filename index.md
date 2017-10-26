@@ -1,5 +1,18 @@
 _Friendly reminder: Whilst I may try to help you / improve these tips, I'm not responsible for anything breaking ;)_
 
+
+### Creation lesson plans more quickly
+For my academy's lesson plans, the content for "Objectives", "Warm-up", and "Cool-down" has similar wording each week. So, I made a hotkey that will type out a template which you can then fill in. Should save a few minutes for each LP (at 6 LPs a week... that should add up as a lot of time saved!).
+
+How-to:
+* You need to download the <a href="LessonPlanning_Macros.ahk">AutoHotKey script</a>
+* You will need AutoHotKey. You can download the latest version from here: https://autohotkey.com/download/. I recommend getting the "Installer" version.
+* If you want the hotkey to be accessible at all times, place the .ahk file in your equivalent of "C:\Users\USERNAME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup". On Windows, you can get to this by:
+1) Pressing "Windows key" + "R".
+2) Typing "shell:startup" and pressing Enter/OK.
+Alternatively, you can just click on the file when you want to run it, or upon USB insertion (adapt BAT/PowerShell scripts from Automatic USB Backup section).
+
+
 ### Automated backup of USB contents to PC folder (then cloud, if you like) - Windows PCs, free
 I work on a few different computers for my lesson plans, PPTs, handouts, etc. - and I want to be sure that I have a backup of this stuff (as you'll see in another tip, I almost lost several PPTs when my USB got bent).
 
@@ -141,5 +154,7 @@ n.b. if this link doesn't work, search for "student finance england abroad"
 ### Todo: Checking mobile data usage on China Unicom
 
 ### Todo: WeChat location sharing to meet up with your friends
+Simply hit the "+" at the lower right of a chat, then "Location", then choose "Real-time location".
+Don't forget to have location permissions enabled!
 
 
