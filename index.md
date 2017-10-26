@@ -11,7 +11,13 @@ How-to:
 
 1. Pressing "Windows key" + "R".
 2. Typing "shell:startup" and pressing Enter/OK.
+
 Alternatively, you can just click on the file when you want to run it, or upon USB insertion (adapt BAT/PowerShell scripts from Automatic USB Backup section).
+
+Also, note that you can of course edit the macro to:
+- Type out whatever you want
+- Have custom shortcuts
+- Use different spacing (I prefer shift+enter line-breaks because full breaks (just enter) takes up too much space).
 
 
 ### Automated backup of USB contents to PC folder (then cloud, if you like) - Windows PCs, free
