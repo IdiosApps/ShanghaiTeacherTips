@@ -6,10 +6,11 @@ For my academy's lesson plans, the content for "Objectives", "Warm-up", and "Coo
 
 How-to:
 * You need to download the <a href="LessonPlanning_Macros.ahk">AutoHotKey script</a>
-* You will need AutoHotKey. You can download the latest version from here: https://autohotkey.com/download/. I recommend getting the "Installer" version.
+* You will need AutoHotKey. You can download the latest version from <a href="https://autohotkey.com/download/">here</a>.  I recommend getting the "Installer" version.
 * If you want the hotkey to be accessible at all times, place the .ahk file in your equivalent of "C:\Users\USERNAME\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup". On Windows, you can get to this by:
-1) Pressing "Windows key" + "R".
-2) Typing "shell:startup" and pressing Enter/OK.
+
+1. Pressing "Windows key" + "R".
+2. Typing "shell:startup" and pressing Enter/OK.
 Alternatively, you can just click on the file when you want to run it, or upon USB insertion (adapt BAT/PowerShell scripts from Automatic USB Backup section).
 
 
